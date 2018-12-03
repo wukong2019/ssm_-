@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/mvc
+           http://www.springframework.org/schema/mvc/spring-mvc.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd
+           http://www.springframework.org/schema/security
+         http://www.springframework.org/schema/security/spring-security.xsd
+           http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop.xsd
+           ">
+
+    <!--<context:component-scan base-package="com.itheima.controller,com.itheima.Aop">-->
+        <!--&lt;!&ndash;<context:component-scan base-package="com.itheima.ssm.controller">&ndash;&gt;-->
+    <!--</context:component-scan>-->
+
+    <security:global-method-security pre-post-annotations="enabled" jsr250-annotations="enabled" secured-annotations="enabled"></security:global-method-security>
+
+
+    <context:component-scan base-package="com.itheima.controller"/>
+
+
+
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/pages/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <mvc:resources mapping="/js/**" location="/js/"/>
+    <mvc:resources mapping="/img/**" location="/img/"/>
+    <mvc:resources mapping="/css/**" location="/css/"/>
+    <mvc:resources mapping="/plugins/**" location="/plugins/"/>
+
+    <mvc:annotation-driven />
+    <aop:aspectj-autoproxy/>
+
+</beans>
